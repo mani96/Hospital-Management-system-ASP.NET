@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Assignment3.Models.Appointment>
+@{
+    ViewBag.Title = "Admin Home";
+}
+<h2>All Appointments</h2>
+<hr />
+<table class="table table-condensed table-hover table-bordered">
+    <tr>
+        <th>
+            Patient's Name
+        </th>
+        <th>
+            Doctor's Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Admission_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discharge_date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admission_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discharge_date)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li class="navbar-link">@Html.ActionLink("Discharge Today", "DischargeToday", new { id = item.Id })</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="navbar-link">@Html.ActionLink("Discharge in later date", "Discharge", new { id = item.Id })</li>
+                    </ul>
+                </div>
+                    @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Back to List", "Index")

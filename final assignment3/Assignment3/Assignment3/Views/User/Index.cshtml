@@ -1,0 +1,63 @@
+﻿@model IEnumerable < Assignment3.Models.Patient>
+@{
+    ViewBag.Title = "User Home";
+}
+
+<h2>User Home</h2>
+
+@Html.ActionLink("Search By Name", "SearchByName") |
+@Html.ActionLink("Search By Admit Date", "SearchByAdmitDate") |
+@Html.ActionLink("Search By Discharge Date", "SearchByDischargeDate")
+
+<table class="table table-condensed table-hover table-bordered">
+    <h1>All Patients</h1>
+    <tr>
+        <th>
+            Patient's Name
+        </th>
+        <th>
+            Phone Number
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Birthday
+        </th>
+        <th>
+            Appointments Available
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Appointments.Count)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li class="navbar-link">@Html.ActionLink("List Appointments", "LookupAppointments", new { Id = item.Id })</li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>

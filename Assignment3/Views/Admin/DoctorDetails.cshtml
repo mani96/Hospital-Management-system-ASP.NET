@@ -1,0 +1,50 @@
+﻿@model Assignment3.Models.User
+
+@{
+    ViewBag.Title = "Admin Home";
+}
+
+<h2>Details</h2>
+<hr />
+<div>
+    
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Office)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Office)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Speciality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Speciality)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditDoctor", new { username = Model.Username }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

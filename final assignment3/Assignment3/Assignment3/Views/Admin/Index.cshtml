@@ -1,0 +1,151 @@
+﻿@using Assignment3.Models;
+@model ViewModel
+@{
+    ViewBag.Title = "Admin Home";
+
+}
+<h2>Admin Home</h2>
+
+@*Below is the button group*@
+<div class="btn-group" role="group" aria-label="">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Add New
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class="navbar-link">@Html.ActionLink("Add new Doctor", "AddDoctor")</li>
+            <li role="separator" class="divider"></li>
+            <li class="navbar-link">@Html.ActionLink("Add new Patients", "AddPatient")</li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Other Actions
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class="navbar-link">@Html.ActionLink("View All Appointments", "ViewAppointments", "Admin")</li>
+            <li role="separator" class="divider"></li>
+        </ul>
+    </div>
+</div>
+
+@*Below is the table for the doctors*@
+<table class="table table-condensed table-hover table-bordered">
+    <h1>Doctors</h1>
+
+    <tr>
+        <th>
+            Username
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Office
+        </th>
+        <th>
+            Speciality
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Doctors)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Office)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speciality)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li class="navbar-link">@Html.ActionLink("Edit", "EditDoctor", new { username = item.Username })</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="navbar-link">@Html.ActionLink("Delete", "DeleteDoctor", new { username = item.Username })</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="navbar-link">@Html.ActionLink("Details", "DoctorDetails", new { username = item.Username })</li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+@*Below is the table for the patients*@
+<table class="table table-condensed table-hover table-bordered">
+    <h1>Patients</h1>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Birthday
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Address
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Patients)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li class="navbar-link">@Html.ActionLink("Edit", "EditPatient", new { id = item.Id })</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="navbar-link">@Html.ActionLink("Delete", "DeletePatient", new { id = item.Id })</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="navbar-link">@Html.ActionLink("Details", "PatientDetails", new { id = item.Id })</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="navbar-link">@Html.ActionLink("Admit", "AdmitPatient", new { id = item.Id })</li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
